@@ -14,7 +14,7 @@ class PDF::FDF::FieldLoader
     Array(YAML.load_file(file)).each do |new_field|
       #puts new_field[0]
       #puts new_field[1]
-      tmp_field = { new_field[0] => new_field[1],}
+      tmp_field = { new_field[0] => new_field[1],} # needs to be converted to a hashmap
       if old_field = find(tmp_field)
         old_field.attributes = tmp_field
       else

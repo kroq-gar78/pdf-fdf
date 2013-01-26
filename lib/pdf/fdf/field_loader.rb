@@ -12,10 +12,13 @@ class PDF::FDF::FieldLoader
   ##############################################################################
   def merge (file)
     Array(YAML.load_file(file)).each do |new_field|
-      if old_field = find(new_field)
-        old_field.attributes = new_field
+      #puts new_field[0]
+      #puts new_field[1]
+      tmp_field = { new_field[0] => new_field[1],}
+      if old_field = find(tmp_field)
+        old_field.attributes = tmp_field
       else
-        @fields << PDF::FDF::Field.new(new_field)
+        @fields << PDF::FDF::Field.new(tmp_field)
       end
     end
 
